@@ -1,7 +1,7 @@
 {
   "name": "openapi-client-axios-ts-gen",
-  "description": "Typescript type generator for openapi-client-axios",
-  "version": "1.10.0",
+  "description": "Typescript type generator for openapi-client-axios-ts",
+  "version": "1.11.0",
   "license": "MIT",
   "bin": {
     "typegen": "./typegen"
@@ -37,7 +37,7 @@
   "dependencies": {
     "@anttiviljami/dtsgenerator": "^2.5.2",
     "indent-string": "^4.0.0",
-    "openapi-client-axios": "*",
+    "openapi-client-axios-ts": "*",
     "swagger-parser": "^10.0.2",
     "yargs": "^16.2.0"
   },

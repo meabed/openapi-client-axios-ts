@@ -42,7 +42,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-typegen:
-    name: Publish openapi-client-axios-typegen
+    name: Publish openapi-client-axios-ts-gen
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     needs:

@@ -43,27 +43,27 @@
 ## Installation
 
 ```
-npm install --save openapi-client-axios
+npm install --save openapi-client-axios-ts
 ```
 
 ES6 import syntax:
 ```javascript
-import OpenAPIClientAxios from 'openapi-client-axios';
+import OpenAPIClientAxios from 'openapi-client-axios-ts';
 ```
 
 CommonJS require syntax:
 ```javascript
-const OpenAPIClientAxios = require('openapi-client-axios').default;
+const OpenAPIClientAxios = require('openapi-client-axios-ts').default;
 ```
 
-The main `OpenAPIClientAxios` class is exported as the default export for the `'openapi-client-axios'` module.
+The main `OpenAPIClientAxios` class is exported as the default export for the `'openapi-client-axios-ts'` module.
 
 ## Getting Started
 
 OpenAPI Client Axios uses [operationIds](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#operation-object)
 in OpenAPIv3 definitions to call API operations.
 
-Below is a simple example of how you would call an operation called `getPets()` with `openapi-client-axios`.
+Below is a simple example of how you would call an operation called `getPets()` with `openapi-client-axios-ts`.
 
 ```javascript
 const api = new OpenAPIClientAxios({ definition: './petstore.yml' });
@@ -402,7 +402,7 @@ A request config object can be created without calling an operation method using
 [`.getRequestConfigForOperation()`](#getrequestconfigforoperationoperation-args)
 
 ```javascript
-import { RequestConfig } from 'openapi-client-axios';
+import { RequestConfig } from 'openapi-client-axios-ts';
 ```
 
 Example object
@@ -449,11 +449,11 @@ may be sometimes preferred.
 
 ## Typegen
 
-`openapi-client-axios` comes with a tool called `typegen` to generate typescript type files (.d.ts) for
+`openapi-client-axios-ts` comes with a tool called `typegen` to generate typescript type files (.d.ts) for
 OpenAPIClient instances using an OpenAPI definition file.
 
 ```
-$ npm install -g openapi-client-axios-typegen
+$ npm install -g openapi-client-axios-ts-gen
 ```
 
 ```
