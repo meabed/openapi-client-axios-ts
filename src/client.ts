@@ -13,27 +13,12 @@ import flatMap from 'lodash/flatMap';
 import isNil from 'lodash/isNil';
 import isArray from 'lodash/isArray';
 import cloneDeep from 'lodash/cloneDeep';
-import {
-  OpenAPIV3,
-  Document,
-  Operation,
-  UnknownOperationMethod,
-  OperationMethodArguments,
-  UnknownOperationMethods,
-  RequestConfig,
-  ParamType,
-  HttpMethod,
-  UnknownPathsDictionary,
-  Server,
-} from './types/client';
+import { OpenAPIV3, Document, Operation, UnknownOperationMethod, OperationMethodArguments, UnknownOperationMethods, RequestConfig, ParamType, HttpMethod, UnknownPathsDictionary, Server } from './types/client';
 
 /**
  * OpenAPIClient is an AxiosInstance extended with operation methods
  */
-export type OpenAPIClient<
-  OperationMethods = UnknownOperationMethods,
-  PathsDictionary = UnknownPathsDictionary
-> = AxiosInstance &
+export type OpenAPIClient<OperationMethods = UnknownOperationMethods, PathsDictionary = UnknownPathsDictionary> = AxiosInstance &
   OperationMethods & {
     api: OpenAPIClientAxios;
     paths: PathsDictionary;
@@ -294,7 +279,7 @@ export class OpenAPIClientAxios {
    * @memberof OpenAPIClientAxios
    */
   public validateDefinition = () => {
-    const validateOpenAPI = new OpenAPISchemaValidator({version: 3});
+    const validateOpenAPI = new OpenAPISchemaValidator({ version: 3 });
     const { errors } = validateOpenAPI.validate(this.document);
     if (errors.length) {
       const prettyErrors = JSON.stringify(errors, null, 2);
@@ -470,7 +455,9 @@ export class OpenAPIClientAxios {
     };
 
     const getParamType = (paramName: string): ParamType => {
-      const param = find((operation as Operation).parameters, { name: paramName }) as OpenAPIV3.ParameterObject;
+      const param = find((operation as Operation).parameters, {
+        name: paramName,
+      }) as OpenAPIV3.ParameterObject;
       if (param) {
         return param.in as ParamType;
       }
@@ -550,24 +537,23 @@ export class OpenAPIClientAxios {
    */
   public getOperations = (): Operation[] => {
     const paths = this.definition?.paths || {};
-    return flatMap(Object.entries(paths),
-      ([path, pathObject]) => {
-        const methods = pick(pathObject, Object.values(HttpMethod));
-        return Object.entries(methods).map(([method, operation]) => {
-          const op: Operation = {
-            ...operation,
-            path,
-            method: method as HttpMethod,
-          };
-          if (pathObject.parameters) {
-            op.parameters = [...(op.parameters || []), ...pathObject.parameters];
-          }
-          if (pathObject.servers) {
-            op.servers = [...(op.servers || []), ...pathObject.servers];
-          }
-          return op;
-        });
+    return flatMap(Object.entries(paths), ([path, pathObject]) => {
+      const methods = pick(pathObject, Object.values(HttpMethod));
+      return Object.entries(methods).map(([method, operation]) => {
+        const op: Operation = {
+          ...operation,
+          path,
+          method: method as HttpMethod,
+        };
+        if (pathObject.parameters) {
+          op.parameters = [...(op.parameters || []), ...pathObject.parameters];
+        }
+        if (pathObject.servers) {
+          op.servers = [...(op.servers || []), ...pathObject.servers];
+        }
+        return op;
       });
+    });
   };
 
   /**

@@ -44,7 +44,7 @@ export async function main() {
     opts.transformOperationName = module[func];
   }
 
-  const [imports, schemaTypes, operationTypings] = await generateTypesForDocument(argv._[0], opts);
+  const [imports, schemaTypes, operationTypings] = await generateTypesForDocument(argv._[0] as string, opts);
   console.log(imports, '\n');
   console.log(schemaTypes);
   console.log(operationTypings);
@@ -66,15 +66,7 @@ export async function generateTypesForDocument(definition: Document | string, op
   const exportedTypes = convertor.getExports();
   const operationTypings = generateOperationMethodTypings(api, exportedTypes, opts);
 
-  const imports = [
-    'import {',
-    '  OpenAPIClient,',
-    '  Parameters,',
-    '  UnknownParamsObject,',
-    '  OperationResponse,',
-    '  AxiosRequestConfig,',
-    `} from 'openapi-client-axios';`,
-  ].join('\n');
+  const imports = ['import {', '  OpenAPIClient,', '  Parameters,', '  UnknownParamsObject,', '  OperationResponse,', '  AxiosRequestConfig,', `} from 'openapi-client-axios';`].join('\n');
 
   return [imports, schemaTypes, operationTypings];
 }
@@ -86,10 +78,18 @@ function generateMethodForOperation(methodName: string, operation: Operation, ex
   // parameters arg
   const normalizedOperationId = normalizeTypeName(operationId);
   const parameterTypePaths = _.chain([
-    _.find(exportTypes, { schemaRef: `#/paths/${normalizedOperationId}/pathParameters` }),
-    _.find(exportTypes, { schemaRef: `#/paths/${normalizedOperationId}/queryParameters` }),
-    _.find(exportTypes, { schemaRef: `#/paths/${normalizedOperationId}/headerParameters` }),
-    _.find(exportTypes, { schemaRef: `#/paths/${normalizedOperationId}/cookieParameters` }),
+    _.find(exportTypes, {
+      schemaRef: `#/paths/${normalizedOperationId}/pathParameters`,
+    }),
+    _.find(exportTypes, {
+      schemaRef: `#/paths/${normalizedOperationId}/queryParameters`,
+    }),
+    _.find(exportTypes, {
+      schemaRef: `#/paths/${normalizedOperationId}/headerParameters`,
+    }),
+    _.find(exportTypes, {
+      schemaRef: `#/paths/${normalizedOperationId}/cookieParameters`,
+    }),
   ])
     .filter()
     .map('path')
@@ -99,7 +99,9 @@ function generateMethodForOperation(methodName: string, operation: Operation, ex
   const parametersArg = `parameters?: Parameters<${parametersType}>`;
 
   // payload arg
-  const requestBodyType = _.find(exportTypes, { schemaRef: `#/paths/${normalizedOperationId}/requestBody` });
+  const requestBodyType = _.find(exportTypes, {
+    schemaRef: `#/paths/${normalizedOperationId}/requestBody`,
+  });
   const dataArg = `data?: ${requestBodyType ? requestBodyType.path : 'any'}`;
 
   // return type
@@ -117,9 +119,7 @@ function generateMethodForOperation(methodName: string, operation: Operation, ex
   const returnType = `OperationResponse<${responseType}>`;
 
   const operationArgs = [parametersArg, dataArg, 'config?: AxiosRequestConfig'];
-  const operationMethod = `'${methodName}'(\n${operationArgs
-    .map((arg) => indent(arg, 2))
-    .join(',\n')}  \n): ${returnType}`;
+  const operationMethod = `'${methodName}'(\n${operationArgs.map((arg) => indent(arg, 2)).join(',\n')}  \n): ${returnType}`;
 
   // comment for type
   const content = _.filter([summary, description]).join('\n\n');
@@ -135,11 +135,7 @@ function generateMethodForOperation(methodName: string, operation: Operation, ex
 }
 
 // tslint:disable-next-line:max-line-length
-export function generateOperationMethodTypings(
-  api: OpenAPIClientAxios,
-  exportTypes: ExportedType[],
-  opts: TypegenOptions,
-) {
+export function generateOperationMethodTypings(api: OpenAPIClientAxios, exportTypes: ExportedType[], opts: TypegenOptions) {
   const operations = api.getOperations();
 
   const operationTypings = operations.map((op) => {

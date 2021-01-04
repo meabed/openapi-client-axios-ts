@@ -12,3 +12,4 @@
 # npm
 node_modules
 npm_debug.log*
+.idea

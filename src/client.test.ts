@@ -32,13 +32,17 @@ describe('OpenAPIClientAxios', () => {
     });
 
     test('operation method names are configurable', async () => {
-      const api = new OpenAPIClientAxios({ definition, strict: true, transformOperationName: (operation) => operation.toUpperCase() });
+      const api = new OpenAPIClientAxios({
+        definition,
+        strict: true,
+        transformOperationName: (operation) => operation.toUpperCase(),
+      });
       await api.init();
 
       expect(api.client).toHaveProperty('GETPETS');
       expect(api.client).toHaveProperty('CREATEPET');
       expect(api.client).toHaveProperty('GETPETBYID');
-    })
+    });
 
     test('dereferences the input document', async () => {
       const api = new OpenAPIClientAxios({ definition, strict: true });
@@ -48,7 +52,10 @@ describe('OpenAPIClientAxios', () => {
     });
 
     test('can be initalised using a valid YAML file', async () => {
-      const api = new OpenAPIClientAxios({ definition: examplePetAPIYAML, strict: true });
+      const api = new OpenAPIClientAxios({
+        definition: examplePetAPIYAML,
+        strict: true,
+      });
       await api.init();
       expect(api.initalized).toEqual(true);
       expect(api.client.api).toBe(api);
@@ -56,7 +63,10 @@ describe('OpenAPIClientAxios', () => {
     });
 
     test('can be initalised using a valid JSON file', async () => {
-      const api = new OpenAPIClientAxios({ definition: examplePetAPIJSON, strict: true });
+      const api = new OpenAPIClientAxios({
+        definition: examplePetAPIJSON,
+        strict: true,
+      });
       await api.init();
       expect(api.initalized).toEqual(true);
       expect(api.client.api).toBe(api);
@@ -72,7 +82,10 @@ describe('OpenAPIClientAxios', () => {
     });
 
     test('can be initalised using alternative server using description', async () => {
-      const api = new OpenAPIClientAxios({ definition, withServer: 'Alternative server' });
+      const api = new OpenAPIClientAxios({
+        definition,
+        withServer: 'Alternative server',
+      });
       await api.init();
       expect(api.getBaseURL()).toEqual(baseURLAlternative);
       expect(api.client.api).toBe(api);
@@ -118,7 +131,10 @@ describe('OpenAPIClientAxios', () => {
       const invalid: any = { ...definition, invalid: 'not openapi' };
       const warn = console.warn;
       console.warn = jest.fn();
-      const api = new OpenAPIClientAxios({ definition: invalid, strict: false });
+      const api = new OpenAPIClientAxios({
+        definition: invalid,
+        strict: false,
+      });
       await api.init();
       expect(console.warn).toBeCalledTimes(1);
       console.warn = warn; // reset console.warn
@@ -184,7 +200,10 @@ describe('OpenAPIClientAxios', () => {
     });
 
     test('throws an error when initalised using a file URL', () => {
-      const api = new OpenAPIClientAxios({ definition: examplePetAPIYAML, strict: true });
+      const api = new OpenAPIClientAxios({
+        definition: examplePetAPIYAML,
+        strict: true,
+      });
       expect(api.initSync).toThrowError();
     });
 
@@ -198,7 +217,10 @@ describe('OpenAPIClientAxios', () => {
       const invalid: any = { ...definition, invalid: 'not openapi' };
       const warn = console.warn;
       console.warn = jest.fn();
-      const api = new OpenAPIClientAxios({ definition: invalid, strict: false });
+      const api = new OpenAPIClientAxios({
+        definition: invalid,
+        strict: false,
+      });
       api.initSync();
       expect(console.warn).toBeCalledTimes(1);
       console.warn = warn; // reset console.warn
@@ -535,7 +557,10 @@ describe('OpenAPIClientAxios', () => {
       const mockHandler = jest.fn((config) => [200, mockResponse]);
       mock.onGet('/pets/1/owner/2').reply((config) => mockHandler(config));
 
-      const res = await client.paths['/pets/{petId}/owner/{ownerId}'].get({ petId: 1, ownerId: 2 });
+      const res = await client.paths['/pets/{petId}/owner/{ownerId}'].get({
+        petId: 1,
+        ownerId: 2,
+      });
       expect(res.data).toEqual(mockResponse);
       expect(mockHandler).toBeCalled();
     });
