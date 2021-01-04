@@ -66,7 +66,15 @@ export async function generateTypesForDocument(definition: Document | string, op
   const exportedTypes = convertor.getExports();
   const operationTypings = generateOperationMethodTypings(api, exportedTypes, opts);
 
-  const imports = ['import {', '  OpenAPIClient,', '  Parameters,', '  UnknownParamsObject,', '  OperationResponse,', '  AxiosRequestConfig,', `} from 'openapi-client-axios';`].join('\n');
+  const imports = [
+    'import {',
+    '  OpenAPIClient,',
+    '  Parameters,',
+    '  UnknownParamsObject,',
+    '  OperationResponse,',
+    '  AxiosRequestConfig,',
+    `} from 'openapi-client-axios';`,
+  ].join('\n');
 
   return [imports, schemaTypes, operationTypings];
 }
@@ -119,7 +127,9 @@ function generateMethodForOperation(methodName: string, operation: Operation, ex
   const returnType = `OperationResponse<${responseType}>`;
 
   const operationArgs = [parametersArg, dataArg, 'config?: AxiosRequestConfig'];
-  const operationMethod = `'${methodName}'(\n${operationArgs.map((arg) => indent(arg, 2)).join(',\n')}  \n): ${returnType}`;
+  const operationMethod = `'${methodName}'(\n${operationArgs
+    .map((arg) => indent(arg, 2))
+    .join(',\n')}  \n): ${returnType}`;
 
   // comment for type
   const content = _.filter([summary, description]).join('\n\n');
@@ -135,7 +145,11 @@ function generateMethodForOperation(methodName: string, operation: Operation, ex
 }
 
 // tslint:disable-next-line:max-line-length
-export function generateOperationMethodTypings(api: OpenAPIClientAxios, exportTypes: ExportedType[], opts: TypegenOptions) {
+export function generateOperationMethodTypings(
+  api: OpenAPIClientAxios,
+  exportTypes: ExportedType[],
+  opts: TypegenOptions,
+) {
   const operations = api.getOperations();
 
   const operationTypings = operations.map((op) => {

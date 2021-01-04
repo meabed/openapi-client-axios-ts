@@ -62,7 +62,16 @@ declare namespace JsonSchemaOrg {
         export type NonNegativeInteger = number;
         export type NonNegativeIntegerDefault0 = number;
         export type SchemaArray = Schema[];
-        export type SimpleTypes = 'array' | 'boolean' | 'integer' | 'null' | 'number' | 'object' | 'string' | 'any' | 'undefined';
+        export type SimpleTypes =
+          | 'array'
+          | 'boolean'
+          | 'integer'
+          | 'null'
+          | 'number'
+          | 'object'
+          | 'string'
+          | 'any'
+          | 'undefined';
         export type StringArray = string[];
       }
     }

@@ -13,12 +13,27 @@ import flatMap from 'lodash/flatMap';
 import isNil from 'lodash/isNil';
 import isArray from 'lodash/isArray';
 import cloneDeep from 'lodash/cloneDeep';
-import { OpenAPIV3, Document, Operation, UnknownOperationMethod, OperationMethodArguments, UnknownOperationMethods, RequestConfig, ParamType, HttpMethod, UnknownPathsDictionary, Server } from './types/client';
+import {
+  Document,
+  HttpMethod,
+  OpenAPIV3,
+  Operation,
+  OperationMethodArguments,
+  ParamType,
+  RequestConfig,
+  Server,
+  UnknownOperationMethod,
+  UnknownOperationMethods,
+  UnknownPathsDictionary,
+} from './types/client';
 
 /**
  * OpenAPIClient is an AxiosInstance extended with operation methods
  */
-export type OpenAPIClient<OperationMethods = UnknownOperationMethods, PathsDictionary = UnknownPathsDictionary> = AxiosInstance &
+export type OpenAPIClient<
+  OperationMethods = UnknownOperationMethods,
+  PathsDictionary = UnknownPathsDictionary
+> = AxiosInstance &
   OperationMethods & {
     api: OpenAPIClientAxios;
     paths: PathsDictionary;

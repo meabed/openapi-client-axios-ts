@@ -46,7 +46,11 @@ export declare type Parameters<ParamsObject = UnknownParamsObject> = ParamsObjec
 export declare type RequestPayload = any;
 export declare type OperationMethodArguments = [Parameters?, RequestPayload?, AxiosRequestConfig?];
 export declare type OperationResponse<Response> = Promise<AxiosResponse<Response>>;
-export declare type UnknownOperationMethod = (parameters?: Parameters, data?: RequestPayload, config?: AxiosRequestConfig) => OperationResponse<any>;
+export declare type UnknownOperationMethod = (
+  parameters?: Parameters,
+  data?: RequestPayload,
+  config?: AxiosRequestConfig,
+) => OperationResponse<any>;
 export interface UnknownOperationMethods {
   [operationId: string]: UnknownOperationMethod;
 }

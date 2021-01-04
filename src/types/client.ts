@@ -51,7 +51,11 @@ export type Parameters<ParamsObject = UnknownParamsObject> = ParamsObject | Para
 export type RequestPayload = any; // should we type this?
 export type OperationMethodArguments = [Parameters?, RequestPayload?, AxiosRequestConfig?];
 export type OperationResponse<Response> = Promise<AxiosResponse<Response>>;
-export type UnknownOperationMethod = (parameters?: Parameters, data?: RequestPayload, config?: AxiosRequestConfig) => OperationResponse<any>;
+export type UnknownOperationMethod = (
+  parameters?: Parameters,
+  data?: RequestPayload,
+  config?: AxiosRequestConfig,
+) => OperationResponse<any>;
 export interface UnknownOperationMethods {
   [operationId: string]: UnknownOperationMethod;
 }
