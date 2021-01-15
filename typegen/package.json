@@ -1,7 +1,7 @@
 {
   "name": "openapi-client-axios-ts-gen",
   "description": "Typescript type generator for openapi-client-axios-ts",
-  "version": "1.11.1",
+  "version": "1.11.2",
   "license": "MIT",
   "bin": {
     "typegen": "typegen"

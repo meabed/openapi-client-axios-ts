@@ -330,10 +330,10 @@ openapi-types@^7.0.1:
   resolved "https://registry.yarnpkg.com/openapi-types/-/openapi-types-7.0.1.tgz#966bcacfd14119fa12000dbc9d588bfd8df2e4d1"
   integrity sha512-6pi4/Fw+JIW1HHda2Ij7LRJ5QJ8f6YzaXnsRA6m44BJz8nLq/j5gVFzPBKJo+uOFhAeHqZC/3uzhTpYPga3Q/A==
 
-openapi-types@^7.2.2:
-  version "7.2.2"
-  resolved "https://registry.yarnpkg.com/openapi-types/-/openapi-types-7.2.2.tgz#2c2750a8b1b2a0924cb38bf779a9c7d104b90d4b"
-  integrity sha512-MJribYRLdEcnKX7SN+CKJfI0cZaPxk4mp71uE9gUWkh+6xnR9LDq2otVUly4/vtULa/wwvmOsx29lQCPy2jyAA==
+openapi-types@^7.2.3:
+  version "7.2.3"
+  resolved "https://registry.yarnpkg.com/openapi-types/-/openapi-types-7.2.3.tgz#83829911a3410a022f0e0cf2b0b2e67232ccf96e"
+  integrity sha512-olbaNxz12R27+mTyJ/ZAFEfUruauHH27AkeQHDHRq5AF0LdNkK1SSV7EourXQDK+4aX7dv2HtyirAGK06WMAsA==
 
 path-is-absolute@^1.0.0:
   version "1.0.1"
