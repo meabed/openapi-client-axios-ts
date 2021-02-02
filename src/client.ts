@@ -40,7 +40,7 @@ export type OpenAPIClient<
   };
 
 /**
- * Main class and the default export of the 'openapi-client-axios' module
+ * Main class and the default export of the 'openapi-client-axios-ts' module
  *
  * @export
  * @class OpenAPIClientAxios

@@ -73,7 +73,7 @@ export async function generateTypesForDocument(definition: Document | string, op
     '  UnknownParamsObject,',
     '  OperationResponse,',
     '  AxiosRequestConfig,',
-    `} from 'openapi-client-axios';`,
+    `} from 'openapi-client-axios-ts';`,
   ].join('\n');
 
   return [imports, schemaTypes, operationTypings];
