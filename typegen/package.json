@@ -35,14 +35,14 @@
   "main": "typegen.js",
   "types": "typegen.d.ts",
   "dependencies": {
-    "@anttiviljami/dtsgenerator": "^2.5.2",
-    "indent-string": "^4.0.0",
+    "@anttiviljami/dtsgenerator": "2.5.2",
+    "indent-string": "4.0.0",
     "openapi-client-axios-ts": "*",
-    "swagger-parser": "^10.0.2",
-    "yargs": "^16.2.0"
+    "swagger-parser": "10.0.2",
+    "yargs": "16.2.0"
   },
   "devDependencies": {
-    "openapi-types": "^7.2.3"
+    "openapi-types": "7.2.3"
   },
   "scripts": {
     "prepack": "./prepack.sh"
