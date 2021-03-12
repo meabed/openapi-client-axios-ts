@@ -1,8 +1,8 @@
 declare module '@apidevtools/json-schema-ref-parser/lib/dereference' {
   import $RefParserOptions from '@apidevtools/json-schema-ref-parser/lib/options';
-  import RefParser from '@apidevtools/json-schema-ref-parser';
+  import $RefParser from '@apidevtools/json-schema-ref-parser';
 
-  export default function dereference(api: RefParser, options: $RefParserOptions): string;
+  export default function dereference(api: $RefParser, options: $RefParserOptions): string;
 }
 
 declare module '@apidevtools/json-schema-ref-parser/lib/options' {
@@ -10,7 +10,9 @@ declare module '@apidevtools/json-schema-ref-parser/lib/options' {
 
   type OptionsRequired = { [K in keyof Options]-?: Options[K] };
 
+  // tslint:disable-next-line:no-empty-interface
   interface $RefParserOptions extends OptionsRequired {}
+
   class $RefParserOptions {
     constructor(options: object | Options);
   }

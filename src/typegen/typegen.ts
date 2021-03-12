@@ -44,7 +44,7 @@ export async function main() {
     opts.transformOperationName = module[func];
   }
 
-  const [imports, schemaTypes, operationTypings] = await generateTypesForDocument(argv._[0], opts);
+  const [imports, schemaTypes, operationTypings] = await generateTypesForDocument(argv._[0] as string | Document, opts);
   console.log(imports, '\n');
   console.log(schemaTypes);
   console.log(operationTypings);

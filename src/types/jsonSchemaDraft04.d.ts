@@ -1,3 +1,4 @@
+// tslint:disable-next-line:no-namespace
 declare namespace JsonSchemaOrg {
     namespace Draft04 {
         /**
@@ -54,7 +55,7 @@ declare namespace JsonSchemaOrg {
                 export type PositiveInteger = number;
                 export type PositiveIntegerDefault0 = number;
                 export type SchemaArray = Schema[];
-                export type SimpleTypes = "array" | "boolean" | "integer" | "null" | "number" | "object" | "string" | "any" | "undefined";
+                export type SimpleTypes = 'array' | 'boolean' | 'integer' | 'null' | 'number' | 'object' | 'string' | 'any' | 'undefined';
                 export type StringArray = string[];
             }
             namespace Properties {

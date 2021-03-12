@@ -1,5 +1,4 @@
 import path from 'path';
-import ts from 'typescript';
 import { generateTypesForDocument } from './typegen';
 
 const rootDir = path.join(__dirname, '..', '..');
@@ -14,7 +13,7 @@ describe('typegen', () => {
 
   beforeAll(async () => {
     const types = await generateTypesForDocument(examplePetAPIYAML, {
-      transformOperationName: (operationId: string) => operationId
+      transformOperationName: (operationId: string) => operationId,
     });
     imports = types[0];
     schemaTypes = types[1];

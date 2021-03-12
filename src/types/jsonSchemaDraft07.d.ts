@@ -1,6 +1,7 @@
+// tslint:disable-next-line:no-namespace
 declare namespace JsonSchemaOrg {
   namespace Draft07 {
-    export type SchemaObject = {
+    export interface SchemaObject {
       $id?: string; // uri-reference
       $schema?: string; // uri
       $ref?: string; // uri-reference
@@ -55,7 +56,7 @@ declare namespace JsonSchemaOrg {
       anyOf?: Schema.Definitions.SchemaArray;
       oneOf?: Schema.Definitions.SchemaArray;
       not?: Schema;
-    };
+    }
     export type Schema = SchemaObject | boolean;
     namespace Schema {
       namespace Definitions {
